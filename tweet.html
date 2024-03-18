@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LEARNERS' SPACE</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="hi.css"> 
+</head>
+<style>
+body {
+	font-family: 'algerian';
+    background: rgb(255, 190, 12);
+}
+.messages {
+	height: 300px;
+	overflow-y: scroll;
+}
+
+.message {
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 10px;
+    margin-top: 20px;
+}
+.message-text {
+	margin-bottom: 20px;
+}
+
+.message-time {
+	font-size: 0.8em;
+	color: #999;
+}
+.card{
+    margin-top: 20px;
+}
+</style>
+<body>
+	<header class="bg-primary text-white p-3">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<center><h1 class="lead">LEARNERS' SPACE</h1></center>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="card">
+						<div id="messages" class="messages"></div>
+						<form id="messageForm">
+							<div class="form-group">
+								<textarea id="message" class="form-control" rows="3" placeholder="What's happening?"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">Share</button>
+						</form>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script>
+	    document.getElementById('messageForm').addEventListener('submit', function(event) {
+	event.preventDefault();
+
+	const message = document.getElementById('message').value;
+	const time = new Date().toLocaleTimeString();
+
+	if (message.trim() === '') {
+		return;
+	}
+
+	const messageElement = document.createElement('div');
+	messageElement.classList.add('message', 'bg-light', 'p-2', 'mb-2');
+	messageElement.innerHTML = `
+		<div class="message-text">${message}</div>
+		<div class="message-time">${time}</div>
+	`;
+
+	document.getElementById('messages').appendChild(messageElement);
+	document.getElementById('message').value = '';
+});
+	</script>
+</body>
+</html>
